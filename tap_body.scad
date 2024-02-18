@@ -4,8 +4,12 @@ include <tap_params.scad>
 
 module TapBody()  {
   difference()  {
-    cylinder(h = HEIGHT,  d = GRIP_DIAMETER,  center=true,
+    intersection() {
+      cylinder(h = HEIGHT,  d = GRIP_DIAMETER,  center=true,
              $fn = GRIP_NUM_SIDES);
+      cylinder(h = HEIGHT,  d = 0.9*GRIP_DIAMETER,  center=true,
+             $fn = 25);
+    }
 
     _scaleXY  = [INNER_TOP_XY.x / INNER_BOTTOM_XY.x,
                  INNER_TOP_XY.y / INNER_BOTTOM_XY.y];
